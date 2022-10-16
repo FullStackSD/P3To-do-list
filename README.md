@@ -113,3 +113,21 @@ To determine if the application was able to withstand any unexpected inputs from
 - Tested inputting a task number that does not exist during the "delete", "complete" and "change" functionality. This resulted in the application stating that the task number did not exist, then repeating the request to input a task number. Therefore, a user cannot perform task list amends for a task that does not exist.
 - An invalid task number was entered when using the "delete", "complete" and "change" function which returned a message that the task number did not exist. 
 - The application requests a valid date in the correct format (DD/MM/YYYY) when using the "add" or "change" functions. The application then will repeat input request.
+
+### Bugs
+
+#### Fixed Bugs
+
+- As Tasks with long names could not be displayed in the console output. The validation function was been added. To ensure correct viewing output the task names are shorter than 20 caracters long.
+- While using the delete task function you could entered a task that did not exist and the application did not return an error message. By including a validation function only existing task numbers can be deleted.
+- Summary tables would not run as designed when fewer than three overdue or upcoming tasks were specified. The tables run an show desired output after the addition of "if statement" codes.
+
+### Code Validator Testing
+
+PEP8 is currently not working:
+- As a workaround, you can add a PEP8 validator to your Gitpod Workspace directly by following these steps:
+- Run the command pip3 install pycodestyle  Note that this extension may already be installed, in which case this command will do nothing.
+- In your workspace, press Ctrl+Shift+P (or Cmd+Shift+P on Mac).
+- Type the word "linter" into the search bar that appears, and click on "Python: Select Linter" from the filtered results.
+- Select "pycodestyle" from the list
+- PEP8 errors will now be underlined in red, as well as being listed in the PROBLEMS tab beside your terminal.
