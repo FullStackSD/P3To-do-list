@@ -39,3 +39,21 @@ def select_function():
         select_view_function()
     else:
         select_amend_function()
+
+
+def select_view_function():
+    """
+    If the user has selected 'View' from the first question
+    This function allows the user to select which type of view they would like
+    """
+    while True:
+        print("Which view would you like?")
+
+        view_response = input("Type 'Full' or 'Summary' here: \n")
+        if validate_input(view_response, "view"):
+            break
+
+    if view_response.lower() == 'full':
+        view_full()
+    else:
+        view_summary()        
