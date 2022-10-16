@@ -109,6 +109,83 @@ def view_full():
     print(full_list)
 
 
+def view_summary():
+    """
+    Formats and displays a summary of the list
+    First table is all overdue tasks
+    Second table is the next three upcoming tasks
+    """
+    data = SHEET.worksheet('to_do').get_all_values()
+    completion_list = SHEET.worksheet('to_do').col_values(4)
+    today = datetime.today()
+    incomplete_list = []
+    for count, item in enumerate(completion_list):
+        if item == 'Incomplete':
+            incomplete_list.append(data[count])
+
+    overdue_list = []
+    for count, item in enumerate(incomplete_list):
+        if datetime.strptime(item[2], '%d/%m/%Y') < today:
+            overdue_list.append(item)
+
+    count_overdue = len(overdue_list)
+    overdue_table = PrettyTable()
+    overdue_table.field_names = data[0]
+
+    if count_overdue == 0:
+        overdue_table.add_row(["", "You have no overdue tasks", "", ""])
+    else:
+        for count, item in enumerate(overdue_list):
+            overdue_table.add_row(item)
+
+    print("\nHere are all of the overdue tasks:")
+    print(overdue_table)
+
+    upcoming_list = []
+    for count, item in enumerate(incomplete_list):
+        if datetime.strptime(item[2], '%d/%m/%Y') >= today:
+            upcoming_list.append(item)
+
+    upcoming_list.sort(key=lambda x: datetime.strptime(x[2], '%d/%m/%Y'))
+    count_upcoming = len(upcoming_list)
+
+    upcoming_table = PrettyTable()
+    upcoming_table.field_names = data[0]
+
+    if count_upcoming == 0:
+        upcoming_table.add_row(["", "You have no upcoming tasks", "", ""])
+
+    if count_upcoming > 0:
+        upcoming_table.add_row(upcoming_list[0])
+        if count_upcoming > 1:
+            upcoming_table.add_row(upcoming_list[1])
+            if count_upcoming > 2:
+                upcoming_table.add_row(upcoming_list[2])
+
+    print("\nHere are the next three upcoming tasks:")
+    print(upcoming_table)
+
+
+class Task:
+    """
+    Class to hold the information needed for each task
+    Follows the same format as the underlying Google Sheet
+    """
+    def __init__(self, number, name, date, status):
+        self.number = number
+        self.name = name
+        self.date = date
+        self.status = status
+
+    def to_list(self):
+        """
+        Method returns the task in list format
+        The list format is needed for the add_task function
+        """
+        return [self.number, self.name, self.date, self.status]
+
+
+
 ascii_banner = pyfiglet.figlet_format("To Do List")
 print(ascii_banner)
 print("Welcome to your To Do List!")
