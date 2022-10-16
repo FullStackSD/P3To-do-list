@@ -23,3 +23,15 @@ The name of the task should be added to the input by the user, and given a deadl
 The deadline date that has been added by the user must take the form of DD/MM/YYYY for the app to recognise the input.
 
 ![Image of the console when adding a task](/assets/images/addtask.png)
+
+### Delete an Existing Task
+
+The unique number that corresponds with the task is entered by the user to the input space provided (to find this, they can use the view full list functionality). The task will then be permantly deleted from the list, and so no longer appears on any of the functionalities.
+
+![Image of the console when deleting a task](/assets/images/deletetask.png)
+
+### Change the Name/Date of an Existing Task
+
+The unique task number that the user wishes to change is entered, the user is then prompted by the application to update the name and also the deadline date. This will overwrite this task.
+
+![Image of the console when changing a task](/assets/images/changetask.png)
