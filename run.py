@@ -82,6 +82,33 @@ def select_amend_function():
         change_task()
 
 
+def validate_input(response, option):
+    """
+    Checks that the user has input a valid response
+    The valid responses are per the function_options dictionary
+    Allows the user to input either upper or lower case
+    """
+    functions = function_options.get(option)
+    if response.lower() in functions:
+        return True
+    else:
+        print("\nResponse is not valid!")
+        return False
+
+
+def view_full():
+    """
+    Formats and displays the full to-do list
+    Uses PrettyTable to format the table
+    """
+    data = SHEET.worksheet('to_do').get_all_values()
+    full_list = PrettyTable()
+    full_list.field_names = data[0]
+    for i in range(len(data)-1):
+        full_list.add_row(data[i+1])
+    print(full_list)
+
+
 ascii_banner = pyfiglet.figlet_format("To Do List")
 print(ascii_banner)
 print("Welcome to your To Do List!")
