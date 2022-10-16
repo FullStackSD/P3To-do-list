@@ -56,8 +56,8 @@ def select_view_function():
     if view_response.lower() == 'full':
         view_full()
     else:
-        view_summary()        
-        
+        view_summary()
+
 
 def select_amend_function():
     """
@@ -302,6 +302,29 @@ def change_task():
     list_worksheet.update_cell(task_position + 1, 2, update_name)
     list_worksheet.update_cell(task_position + 1, 3, update_date)
     print(f"Task number {task_selection} has been updated!")
+
+
+def validate_task_number(input_number):
+    """
+    Validates that the user has input an existing task number
+    Will provide an error if that task does not exist
+    """
+    task_numbers = SHEET.worksheet('to_do').col_values(1)
+    if input_number in task_numbers:
+        return True
+    else:
+        print("\nThere is no task with that number.")
+        return False
+
+
+def main():
+    """
+    Runs the program functions
+    Places a horizontal line before the restart for separation
+    """
+    while True:
+        select_function()
+        print("\n"+"─"*60)
 
 
 ascii_banner = pyfiglet.figlet_format("To Do List")
