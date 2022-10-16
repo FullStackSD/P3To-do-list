@@ -14,3 +14,10 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('to_do_list')
+
+
+function_options = {
+    "type": ["view", "amend"],
+    "view": ["full", "summary"],
+    "amend": ["add", "delete", "complete", "change"]
+}
