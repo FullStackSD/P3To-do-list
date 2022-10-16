@@ -35,3 +35,27 @@ The unique number that corresponds with the task is entered by the user to the i
 The unique task number that the user wishes to change is entered, the user is then prompted by the application to update the name and also the deadline date. This will overwrite this task.
 
 ![Image of the console when changing a task](/assets/images/changetask.png)
+
+### Mark a Task as Complete
+
+The tasks that are now completed can be marked as such by entering the unique number (to find this, they can use the view full list functionality). Then the status is marked as "Complete".
+
+![Image of the console when completing a task](/assets/images/completetask.png)
+
+### View the Full Listing
+
+The view full listing function displays the full list of tasks which are both incomplete and complete, here is where the user finds the information to delete and complete functions.
+
+![Image of the full to-do list output](/assets/images/fullview.png)
+
+### View a Summary Listing
+
+Two summary tables of incomplete tasks are displayed:
+- overdue tasks; and
+- the three tasks that follow by date.
+
+If there are no pending tasks, a message will be displayed that they are not upcomming tasks.
+The first table will only display tasks that are over due, if there are no tasks that are overdue the applications displays a message to show that there are not overdue tasks.
+The second table will only show the next three upcoming incomplete tasks, if there are less than three tasks the second table will only show the upcoming incomplete tasks.
+
+![Image of the summary to-do list output](/assets/images/summaryview.png)
