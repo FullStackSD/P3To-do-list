@@ -131,3 +131,23 @@ PEP8 is currently not working:
 - Type the word "linter" into the search bar that appears, and click on "Python: Select Linter" from the filtered results.
 - Select "pycodestyle" from the list
 - PEP8 errors will now be underlined in red, as well as being listed in the PROBLEMS tab beside your terminal.
+
+## Deployment
+
+This application was deployed using Code Institute's mock terminal for Heroku.
+
+Steps for deployment:
+- Fork or clone of the GitHub repository.
+- Create a new Heroku app.
+- Set the buildbacks to Python and NodeJS in that order.
+- Link the Heroku app to the GitHub repository.
+- Select "Deploy".
+
+
+## Credits
+- Code Institute for the GitHub template for terminal applications.
+- [Pretty Table](https://pypi.org/project/prettytable/) to neatly format the table outputs to the console.
+- [Pyfiglet](https://github.com/pwaller/pyfiglet) for the ASCII header.
+- [LucidChart](https://www.lucidchart.com/pages/) for the flowcharts used in the planning stage.
+- My family and friends for user testing and feedback.
+- Code Institute Slack, for the format of the Testing section of the ReadMe. 
