@@ -185,6 +185,60 @@ class Task:
         return [self.number, self.name, self.date, self.status]
 
 
+def add_task():
+    """
+    Requests the user to input a new task
+    Adds the task to the google sheet list at the end
+    """
+    while True:
+        new_task_name = input("Type the name of the task here: \n")
+        if validate_add_task_name(new_task_name):
+            break
+
+    while True:
+        print("What is the deadline for this new task?")
+        new_date = input("Use the format DD/MM/YYYY?: \n")
+        if validate_add_task_date(new_date):
+            break
+
+    list_worksheet = SHEET.worksheet('to_do')
+    task_numbers = list_worksheet.col_values(1)
+    task_numbers.remove('Number')
+    task_numbers_int = list(map(int, task_numbers))
+    new_index = max(task_numbers_int, default=0) + 1
+
+    task = Task(new_index, new_task_name, new_date, 'Incomplete')
+
+    list_worksheet = SHEET.worksheet('to_do')
+    list_worksheet.append_row(task.to_list())
+
+    print(f"This task has been added as item number {new_index}.")
+
+
+def validate_add_task_name(name):
+    """
+    Checks if the new task name is within 20 characters
+    This ensures that the task will be able to be viewed in the console
+    If over 20 characters, an error message is provided
+    """
+    if len(name) <= 20:
+        return True
+    else:
+        print("The task name must be 20 character max.")
+        return False
+
+
+def validate_add_task_date(input_date):
+    """
+    Validates that the date input by the user is in the correct format
+    Will provide an error message if incorrect and request the date again
+    """
+    try:
+        datetime.strptime(input_date, '%d/%m/%Y')
+        return True
+    except ValueError:
+        print("\nEnsure the date is valid and in the format DD/MM/YYYY.")
+        return False
 
 ascii_banner = pyfiglet.figlet_format("To Do List")
 print(ascii_banner)
