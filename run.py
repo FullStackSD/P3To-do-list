@@ -82,3 +82,8 @@ def select_amend_function():
         change_task()
 
 
+ascii_banner = pyfiglet.figlet_format("To Do List")
+print(ascii_banner)
+print("Welcome to your To Do List!")
+print("Please click 'Run Program' above to restart at any time.")
+main()
