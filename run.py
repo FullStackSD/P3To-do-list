@@ -21,3 +21,21 @@ function_options = {
     "view": ["full", "summary"],
     "amend": ["add", "delete", "complete", "change"]
 }
+
+
+def select_function():
+    """
+    Asks the user which function they want to use
+    Between amending the list and viewing the list
+    """
+    while True:
+        print("\nWould you like to view or amend the list?")
+
+        function_response = input("Type 'View' or 'Amend' here: \n")
+        if validate_input(function_response, "type"):
+            break
+
+    if function_response.lower() == 'view':
+        select_view_function()
+    else:
+        select_amend_function()
