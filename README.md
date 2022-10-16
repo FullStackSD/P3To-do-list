@@ -69,3 +69,47 @@ Gspread API was used in order to amend and manipulate data in the spreadsheet.[g
 The integrity of the data is mantained by refusing access of the Google Sheet to the user.
 
 ![Image of the underlying Google Sheets document](/assets/images/googlesheet.jpg)
+
+## Testing
+
+### Manual Testing
+
+- Manual use cases have been run to test the functionality of the application.
+- The table below shows the user stories, the associated use cases, the task script followed for the test, and whether this passed or failed.
+
+| User Story -> Use Cases -> Tasks | Pass/Fail |
+| --- | --- |
+| **User Story 1:** I want to review upcoming task as well as tasks completed. | PASS |
+| + > **Use Case 1-1:** I want to view both completed and incompleted tasks. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> the prompt "Would you like to view or amend the list?" should be displayed -> type in "View" and press Enter -> the prompt "Which view would you like?" should be displayed -> type "Full" and press Enter -> the full list will display | PASS |
+| + > **Use Case 1-2:** I want to be able to prioritise tasks using a summary. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> the prompt "Would you like to view or amend the list?" should be displayed -> type in "View" and press Enter -> the prompt "Which view would you like?" should be displayed -> type "Summary" and press Enter -> a list of overdue tasks, and a list of the next three due tasks (by date) will display. | PASS |
+
+| User Story -> Use Cases -> Tasks | Pass/Fail |
+| --- | --- |
+| **User Story 2:** I want to add and delete tasks from the list. | PASS |
+| + > **Use Case 2-1:** I want to be able to add a new task to the list. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> type in "Amend" and press Enter -> type "Add" and press Enter -> input a task name -> input a deadline date -> if successful, the application will display: "This task has been added as item number X" where "X" is the next number along -> type in "View" and press Enter -> type "Full" and press Enter -> the full list will display -> verify that the new task has been added to this list at the end. | PASS |
+| + > **Use Case 2-2:** A unique number must be assigned to a new task. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> type in "Amend" and press Enter -> type "Add" and press Enter -> input a task name -> input a deadline date -> if successful, the application will display: "This task has been added as item number X" where "X" is the next number along -> type in "View" and press Enter -> type "Full" and press Enter -> the full list will display -> verify that the new task has a unique number compared to the previously existing tasks. | PASS |
+| + > **Use Case 2-3:** Tasks that are no longer apply should be deleted. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> type in "Amend" and press Enter -> type "Delete" and press Enter -> select a task number (obtained from the "View" function first if required) -> if successful, the application will display: "Task number X has been deleted!" where "X" is the task number selected -> type in "View" and press Enter -> type "Full" and press Enter -> the full list will display -> verify that the selected task is no longer on the list. | PASS |
+
+| User Story -> Use Cases -> Tasks | Pass/Fail |
+| --- | --- |
+| **User Story 3:** Any existing tasks should be easily modified. | PASS |
+| + > **Use Case 3-1:** A task should be mark as complete. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> type in "Amend" and press Enter -> type "Complete" and press Enter -> select a task number that is status "Incomplete" (obtained from the "View" function first if required) -> if successful, the application will display: "Task number X has been set to Complete!" where "X" is the task number selected -> type in "View" and press Enter -> type "Full" and press Enter -> the full list will display -> verify that the selected task has a "Complete" status. | PASS |
+| + + + > **Task 2:** Open the Heroku App -> type in "Amend" and press Enter -> type "Complete" and press Enter -> select a task number that is status "Complete" (obtained from the "View" function first if required) -> if successful, the application will display: "Task number X has been set to Complete!" where "X" is the task number selected -> type in "View" and press Enter -> type "Full" and press Enter -> the full list will display -> verify that the selected task continues to have a "Complete" status. | PASS |
+| + > **Use Case 3-2:** The name of the task and deadline date for the task should be easily modified. | PASS |
+| + + + > **Task 1:** Open the Heroku App -> type in "Amend" and press Enter -> type "Change" and press Enter -> select a task number (obtained from the "View" function first if required) -> the application will display: "Type the updated task name" -> type in an updated task name and press Enter -> the application will display: "What is the revised deadline for this updated task?" -> type in an updated deadline date and press Enter -> if successful, the application will display: "Task number X has been updated!" where "X" is the task number selected -> type "Full" and press Enter -> the full list will display -> verify that the selected task has the updated name and date. | PASS |
+
+### "Negative Testing"
+
+To determine if the application was able to withstand any unexpected inputs from the user the following negative testing was performed:
+
+- Combinations of upper and lower case letters were tested for the selector inputs "view", "amend", "full", "summary", "add", "delete", "complete", and "change" as they appear in the flow of the application. All tested combinations of upper and lower cases (e.g. "View", "VIEW", "view") provided the correct outcome with the application flow continuing as expected.
+- The application clearly displayed an error message when the input selectors were different from those required. The user was then prompted to correct their input to a specified input selector.
+- Tested inputting a task number that does not exist during the "delete", "complete" and "change" functionality. This resulted in the application stating that the task number did not exist, then repeating the request to input a task number. Therefore, a user cannot perform task list amends for a task that does not exist.
+- An invalid task number was entered when using the "delete", "complete" and "change" function which returned a message that the task number did not exist. 
+- The application requests a valid date in the correct format (DD/MM/YYYY) when using the "add" or "change" functions. The application then will repeat input request.
