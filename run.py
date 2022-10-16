@@ -240,6 +240,70 @@ def validate_add_task_date(input_date):
         print("\nEnsure the date is valid and in the format DD/MM/YYYY.")
         return False
 
+
+def delete_task():
+    """
+    Requests the user input a task number from the full table list
+    Deletes the task from the google sheet
+    """
+    list_worksheet = SHEET.worksheet('to_do')
+    task_numbers = list_worksheet.col_values(1)
+    while True:
+        task_selection = input("Which task number would you like to delete?\n")
+        if validate_task_number(task_selection):
+            break
+
+    task_position = int(task_numbers.index(task_selection))
+    list_worksheet.delete_rows(task_position + 1)
+    print(f"Task number {task_selection} has been deleted!")
+
+
+def complete_task():
+    """
+    Requests the user input a task number from the full table list
+    Sets the task status to Complete
+    """
+    list_worksheet = SHEET.worksheet('to_do')
+    task_numbers = list_worksheet.col_values(1)
+    while True:
+        task_selection = input("Which task number is complete? \n")
+        if validate_task_number(task_selection):
+            break
+
+    task_position = int(task_numbers.index(task_selection))
+    list_worksheet.update_cell(task_position + 1, 4, 'Complete')
+    print(f"Task number {task_selection} has been set to Complete!")
+
+
+def change_task():
+    """
+    Requests the user to input a task number from the full table list to change
+    Asks for an updated name and deadline date
+    """
+    list_worksheet = SHEET.worksheet('to_do')
+    task_numbers = list_worksheet.col_values(1)
+    while True:
+        task_selection = input("Which task number would you like to change?\n")
+        if validate_task_number(task_selection):
+            break
+
+    task_position = int(task_numbers.index(task_selection))
+
+    while True:
+        update_name = input("Type the updated task name: \n")
+        if validate_add_task_name(update_name):
+            break
+
+    while True:
+        print("What is the revised deadline for this updated task?")
+        update_date = input("Use the format DD/MM/YYYY?: \n")
+        if validate_add_task_date(update_date):
+            break
+    list_worksheet.update_cell(task_position + 1, 2, update_name)
+    list_worksheet.update_cell(task_position + 1, 3, update_date)
+    print(f"Task number {task_selection} has been updated!")
+
+
 ascii_banner = pyfiglet.figlet_format("To Do List")
 print(ascii_banner)
 print("Welcome to your To Do List!")
