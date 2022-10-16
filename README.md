@@ -59,3 +59,13 @@ The first table will only display tasks that are over due, if there are no tasks
 The second table will only show the next three upcoming incomplete tasks, if there are less than three tasks the second table will only show the upcoming incomplete tasks.
 
 ![Image of the summary to-do list output](/assets/images/summaryview.png)
+
+## Data Model
+
+Google Sheets was used to create the Data Model to create this application. This Google Sheets is linked to the application and hold all the information to the To-Do-List.
+
+Gspread API was used in order to amend and manipulate data in the spreadsheet.[gspread API](https://docs.gspread.org/en/latest/#).
+
+The integrity of the data is mantained by refusing access of the Google Sheet to the user.
+
+![Image of the underlying Google Sheets document](/assets/images/googlesheet.jpg)
