@@ -57,3 +57,28 @@ def select_view_function():
         view_full()
     else:
         view_summary()        
+        
+
+def select_amend_function():
+    """
+    If the user has selected amend in the first question
+    This function allows the user to select which type of amendment they want
+    """
+    while True:
+        print("What amendment would you like?")
+
+        amend_message = "Type 'Add', 'Delete', 'Complete' or 'Change' here:"
+        amend_response = input(f"{amend_message}\n")
+        if validate_input(amend_response, "amend"):
+            break
+
+    if amend_response.lower() == 'add':
+        add_task()
+    elif amend_response.lower() == 'delete':
+        delete_task()
+    elif amend_response.lower() == 'complete':
+        complete_task()
+    else:
+        change_task()
+
+
